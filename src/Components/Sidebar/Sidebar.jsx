@@ -26,6 +26,12 @@ function Sidebar() {
 		else productDispatch({ type: 'ADD_SIZE', payload: size });
 	}
 
+	function genderClickHandler(gender) {
+		if (productState.gender.find((one) => one === gender))
+			productDispatch({ type: 'REMOVE_GENDER', payload: gender });
+		else productDispatch({ type: 'ADD_GENDER', payload: gender });
+	}
+
 	useEffect(() => {
 		setBrands(getBrands(productState.products));
 	}, []);
@@ -130,6 +136,34 @@ function Sidebar() {
 										className='ml-3 text-sm cursor-pointer opacity-70'
 									>
 										{size}
+									</label>
+								</li>
+							);
+						})}
+					</ul>
+				</div>
+
+				<div className='border-t-2 border-gray-200 py-2 p-4'>
+					<div className='text-sm font-medium'>IDEAL FOR</div>
+					<ul className='mt-3'>
+						{['Men', 'Women'].map((gender, index) => {
+							return (
+								<li key={index} className='flex items-center mb-2'>
+									<input
+										onChange={() => genderClickHandler(gender)}
+										id={gender}
+										type='checkbox'
+										checked={
+											productState.gender.find((one) => one === gender)
+												? true
+												: false
+										}
+									/>
+									<label
+										htmlFor={gender}
+										className='ml-3 text-sm cursor-pointer opacity-70'
+									>
+										{gender}
 									</label>
 								</li>
 							);

@@ -23,3 +23,12 @@ export function getFilteredSize(products, size) {
 		return false;
 	});
 }
+
+export function getFilteredGender(products, gender) {
+	if (gender.length === 0) return products;
+
+	return products.filter((product) => {
+		if (gender.find((one) => one === product.gender)) return true;
+		return false;
+	});
+}
