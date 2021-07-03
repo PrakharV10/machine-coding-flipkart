@@ -1,16 +1,13 @@
 import React from 'react';
 import { useProducts } from '../../Context/product-context';
 import Card from '../Card/Card';
-import { getFilteredData, getSortedData } from './utils';
+import { getFilteredBrands, getFilteredSize, getSortedData } from './utils';
 
 function ProductList() {
 	const { productState } = useProducts();
 	const sortedProducts = getSortedData(productState.products, productState.sortBy);
-	const filteredProducts = getFilteredData(
-		sortedProducts,
-		productState.brandName,
-		productState.size
-	);
+	const filteredbrands = getFilteredBrands(sortedProducts, productState.brandName);
+	const filteredSize = getFilteredSize(filteredbrands, productState.size);
 
 	return (
 		<div className='w-screen flex-1 mx-2 md:ml-2 md:mr-0'>
@@ -18,7 +15,7 @@ function ProductList() {
 				<span>Clothing And Accessories</span>
 			</div>
 			<div className='flex flex-wrap justify-between md:justify-start'>
-				{sortedProducts.map((product) => {
+				{filteredSize.map((product) => {
 					return (
 						<div key={product.id}>
 							<Card product={product} />
