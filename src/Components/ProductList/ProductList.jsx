@@ -1,15 +1,24 @@
 import React from 'react';
-import products from '../../Data/products';
+import { useProducts } from '../../Context/product-context';
 import Card from '../Card/Card';
+import { getFilteredData, getSortedData } from './utils';
 
-function Description() {
+function ProductList() {
+	const { productState, productDispatch } = useProducts();
+	const sortedProducts = getSortedData(productState.products, productState.sortBy);
+	const filteredProducts = getFilteredData(
+		sortedProducts,
+		productState.brandName,
+		productState.size
+	);
+
 	return (
 		<div className='w-screen flex-1 mx-2 md:ml-2 md:mr-0'>
 			<div className='h-20 mb-4 flex justify-between items-center p-2 font-medium bg-white'>
 				<span>Clothing And Accessories</span>
 			</div>
 			<div className='flex flex-wrap justify-between md:justify-start'>
-				{products.map((product) => {
+				{sortedProducts.map((product) => {
 					return (
 						<div key={product.id}>
 							<Card product={product} />
@@ -21,4 +30,4 @@ function Description() {
 	);
 }
 
-export default Description;
+export default ProductList;
