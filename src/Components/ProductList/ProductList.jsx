@@ -4,7 +4,7 @@ import Card from '../Card/Card';
 import { getFilteredData, getSortedData } from './utils';
 
 function ProductList() {
-	const { productState, productDispatch } = useProducts();
+	const { productState } = useProducts();
 	const sortedProducts = getSortedData(productState.products, productState.sortBy);
 	const filteredProducts = getFilteredData(
 		sortedProducts,

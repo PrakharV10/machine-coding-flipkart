@@ -1,4 +1,5 @@
 export function getSortedData(products, sortBy) {
+	console.log(sortBy);
 	if (sortBy && sortBy === 'HIGH_TO_LOW') {
 		return products.sort((a, b) => b.price - a.price);
 	} else if (sortBy && sortBy === 'LOW_TO_HIGH') {

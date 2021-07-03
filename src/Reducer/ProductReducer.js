@@ -12,7 +12,9 @@ export const initialProductState = {
 export function productReducer(state, { type, payload }) {
 	switch (type) {
 		case SORT:
-			return { ...state, sortBy: payload.sortBy };
+			return { ...state, sortBy: payload };
+		case 'TOGGLE_BRAND':
+			return { ...state, brandName: payload };
 		default:
 			return state;
 	}

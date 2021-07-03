@@ -70,7 +70,16 @@ function Sidebar() {
 						{brands.map((brand, index) => {
 							return (
 								<li key={index} className='flex items-center mb-2'>
-									<input id={brand} type='checkbox' />
+									<input
+										onClick={() =>
+											productDispatch({
+												type: 'TOGGLE_BRAND',
+												payload: brand,
+											})
+										}
+										id={brand}
+										type='checkbox'
+									/>
 									<label
 										htmlFor={brand}
 										className='ml-3 text-sm cursor-pointer opacity-70'
